@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="border">
+  <h1>タスク</h1>
+  <div class="top_todo">
+    <a href="/todo_regist" role="button" class="top_btn">タスク登録</a>
+    {% if check %}
+      <a href="/" role="button" class="top_btn">進行中のみ</a>
+    {% else %}
+      <a href="/todo_all" role="button" class="top_btn">全て表示</a>
+    {% endif %}
+  </div>
+  {% if todo_list == [] %}
+    <p>ToDoは未登録です</p>
+  {% else %}
+    <table border="1">
+      <tr class="first_record">
+        <th>件名</th>
+        <th>詳細</th>
+        <th>期限</th>
+        <th>状況</th>
+        <th></th>
+        <th></th>
+      </tr>
+      {% for todo in todo_list %}
+        <tr id="todo-{{ todo.id }}">
+          <td>{{todo.title}}</td>
+          <td class="l_tb">{{todo.detail}}</td>
+          <td>{{todo.deadline}}</td>
+          <td>
+            <select class="status-select" data-id="{{ todo.id }}" id="select">
+              <option value="進行中" {% if todo.status == '進行中'%}selected{% endif %}>進行中</option>
+              <option value="完了" {% if todo.status == '完了'%}selected{% endif %}>完了</option>
+            </select>
+          </td>
+          <td><a href="/{{todo.id}}/todo_edit" role="button">編集</a></td>
+          <td><a href="/{{todo.id}}/todo_delete">削除</a></td>
+        </tr>
+      {% endfor %}
+      <div class="chara01">
+        <img src="{{ url_for('static', filename='images/furyo_shounen.png') }}" alt="" class="chara_img" >
+      </div>
+    </table>
+  {% endif %}
+  <svg width="0" height="0">
+    <path id="motionPath" d="M0,0 C100,100 200,0 300,100" fill="none"/>
+  </svg>
+</div>
+{% endblock %}

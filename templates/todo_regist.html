@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="border">
+  <h1>タスク登録</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul style="color: red;">
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <form method="POST">
+    <table border="1">
+      <tr class="first_record"><th>件名</th><th>詳細</th><th>期限</th><th>状況</th></tr>
+      <tr>
+        <td>
+          <input type="text" name="title" id="title" value="{{title}}">
+        </td>
+        <td class="l_tb">
+          <input type="text" name="detail" id="detail" value="{{detail}}">
+        </td>
+        <td>
+          <input type="date" name="deadline" id="deadline" value="{{deadline}}">
+        </td>
+        <td>
+          <select name="status" id="status" >
+            <option value="" {% if status == ''%}selected{% endif %}>選択してください</option>
+            <option value="進行中" {% if status == '進行中'%}selected{% endif %}>進行中</option>
+            <option value="完了" {% if status == '完了'%}selected{% endif %}>完了</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <input type="submit" value="登録" class="btn">
+  </form>
+  <div class="back">
+    <a href="/" >一覧に戻る</a>
+  </div>
+    <div class="chara02">
+    <img  src="{{ url_for('static', filename='images/yakuza_kowai.png') }}" alt="" class="chara_img">
+  </div>
+</div>
+{% endblock %}

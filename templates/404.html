@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="error_head">該当ページなし</h1>
+<p class="error_msg"> 舐めとるんか</p>
+<img  src="{{ url_for('static', filename='images/akainu.jpg') }}" alt="" class="error_img">
+<div class="error_back">
+  <a href="/" >一覧に戻る</a>
+</div>
+{% endblock %}
