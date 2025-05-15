@@ -2,7 +2,7 @@ body {
   background: #e3e3e3;
 }
 
-.border {
+.border1 {
   border: solid 1px rgb(128, 125, 125);
   width: 70%;
   margin: 32px auto; 
@@ -35,12 +35,9 @@ a:hover {
 }
 
 table {
-  border-collapse: separate;
+  border-collapse: collapse;
   margin: 16px auto;
   width:90%;
-  border-radius: 30px;
-  border-spacing: 0;
-  overflow: hidden;
   border: 1px solid #000;
 }
 
@@ -68,6 +65,15 @@ table {
   background: #533aaf;
 }
 
+.delete_btn {
+  display: block;
+  border-radius: 4px;
+  transition: 1.2s;
+  padding: 4px 8px;
+  text-decoration: none;
+  color: #0000ee;
+}
+
 .back {
   margin-top: 16px;
   margin-left: auto;
@@ -76,26 +82,32 @@ table {
   text-align: center;
 }
 
-th:first-child {
+/* th:first-child {
   border-top-left-radius: 10px;
 }
 
 th:last-child {
   border-radius: 0 10px 0 0;
+} */
+
+th {
+  border: 1px solid #000;
+  text-align: center;
 }
 
 td {
   padding: 4px;
   text-align: center;
+  border:1px solid #000
 }
 
-tr:last-child td:first-child {
+/* tr:last-child td:first-child {
   border-radius: 0 0 0 10px;
 }
 
 tr:last-child td:last-child {
   border-radius: 0 0 10px 0;
-}
+} */
 
 #detail {
   width:98%;

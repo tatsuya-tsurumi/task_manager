@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="border">
+<div class="border1">
   <h1>タスク</h1>
   <div class="top_todo">
     <a href="/todo_regist" role="button" class="top_btn">タスク登録</a>
@@ -34,7 +34,28 @@
             </select>
           </td>
           <td><a href="/{{todo.id}}/todo_edit" role="button">編集</a></td>
-          <td><a href="/{{todo.id}}/todo_delete">削除</a></td>
+          <td>
+            <a type="button" class="delete_btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{todo.id}}">削除</a>
+          </td>
+
+          <div class="modal fade" id="deleteModal{{todo.id}}" tabindex="-1" aria-labelledby="deleteModalLabel{{todo.id}}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteModalLabel{{todo.id}}">確認</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                </div>
+                <div class="modal-body">
+                  削除してもよろしいですか？
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                  <a href="/{{todo.id}}/todo_delete" class="btn">削除する</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </tr>
       {% endfor %}
       <div class="chara01">
