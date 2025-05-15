@@ -47,10 +47,10 @@ def edit(id):
     status = request.form.get("status")
     if title == "":
       flash("件名は必須です")
-      return render_template("/todo_regist.html",title=title,detail=detail,deadline=deadline,status=status)
+      return render_template("/todo_edit.html",title=title,detail=detail,deadline=deadline,status=status)
     if status == "":
       flash("状況が選択されていません")
-      return render_template("/todo_regist.html",title=title,detail=detail,deadline=deadline,status=status)
+      return render_template("/todo_edit.html",title=title,detail=detail,deadline=deadline,status=status)
     db = get_db()
     db.execute("UPDATE todo SET title=?, detail=?, deadline=?, status=? WHERE id =?",[title,detail,deadline,status,id])
     db.commit()

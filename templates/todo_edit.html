@@ -16,19 +16,23 @@
       <tr class="first_record"><th>件名</th><th>詳細</th><th>期限</th><th>状況</th></tr>
       <tr>
         <td>
-          <input type="text" name="title" id="title" value="{{title or post.title }}">
+          {% set t_value = title if title else (post.title if post else '') %}
+          <input type="text" name="title" id="title" value="{{t_value}}">
         </td>
         <td class="l_tb">
-          <input type="text" name="detail" id="detail" value="{{detail or post.detail }}">
+          {% set d_value = detail if detail else (post.detail if post else '') %}
+          <input type="text" name="detail" id="detail" value="{{d_value}}">
         </td>
         <td>
+          {% set dead_value = deadline if deadline else (post.deadline if post else '') %}
           <input type="date" name="deadline" id="deadline" value="{{deadline or post.deadline}}">
         </td>
         <td>
           <select name="status" id="status">
-            <option value="" {% if status or post.status == ''%}selected{% endif %}>選択してください</option>
-            <option value="進行中" {% if status or post.status == '進行中'%}selected{% endif %}>進行中</option>
-            <option value="完了" {% if status or post.status == '完了'%}selected{% endif %}>完了</option>
+            {% set s_value = status if status else (post.status if post else '') %}
+            <option value="" {% if s_value == ''%}selected{% endif %}>選択してください</option>
+            <option value="進行中" {% if s_value == '進行中'%}selected{% endif %}>進行中</option>
+            <option value="完了" {% if s_value == '完了'%}selected{% endif %}>完了</option>
           </select>
         </td>
       </tr>
