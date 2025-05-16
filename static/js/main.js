@@ -1,3 +1,7 @@
+$(window).on("load", function() {
+    $('.border1').fadeIn(1000); 
+});
+
 document.querySelectorAll(".status-select").forEach(select => {
   select.addEventListener("change", function () {
     const id = this.dataset.id;
@@ -58,7 +62,7 @@ function startWalk() {
     scaleX: 1,
     easing: "easeInQuad",
     duration: 4000,
-    delay: 1000,
+    delay: 2000,
     complete: function() {
       flipped = true;
       anime({
@@ -93,7 +97,7 @@ function startWalk2() {
     scaleX: 1,
     easing: "linear",
     duration: 4000,
-    delay: 1000,
+    delay: 2000,
     complete: function() {
       flipped = true;
       anime({
