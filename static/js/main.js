@@ -1,3 +1,7 @@
+$(window).on("load", function() {
+    $('.border1').fadeIn(1000); 
+});
+
 document.querySelectorAll(".status-select").forEach(select => {
   select.addEventListener("change", function () {
     const id = this.dataset.id;
