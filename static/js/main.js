@@ -62,7 +62,7 @@ function startWalk() {
     scaleX: 1,
     easing: "easeInQuad",
     duration: 4000,
-    delay: 1000,
+    delay: 2000,
     complete: function() {
       flipped = true;
       anime({
@@ -97,7 +97,7 @@ function startWalk2() {
     scaleX: 1,
     easing: "linear",
     duration: 4000,
-    delay: 1000,
+    delay: 2000,
     complete: function() {
       flipped = true;
       anime({
