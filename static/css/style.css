@@ -1,13 +1,14 @@
 body {
-  background: #e3e3e3;
+  background: #d5d9da;
 }
 
 .border1 {
-  border: solid 1px rgb(128, 125, 125);
+  border: solid 5px rgba(6, 139, 154, 0.379);
   width: 70%;
   margin: 32px auto; 
   padding: 16px 16px 32px;
   position: relative;
+  border-radius: 10px;
 }
 
 h1 {
@@ -41,6 +42,10 @@ table {
   border: 1px solid #000;
 }
 
+.sub_table {
+  margin-top: 100px;
+}
+
 .first_record {
   background-color:#bcb6b6;
 }
@@ -49,7 +54,8 @@ table {
   width: 400px;
 }
 
-.btn {
+.regist_btn,
+.update_btn {
   cursor: pointer;
   padding: 8px;
   width: 150px;
@@ -57,11 +63,14 @@ table {
   color: #fff;
   border-radius: 5px;
   display: block;
-  margin: 16px auto;
+  margin: 32px auto 48px;
   transition: 0.8s;
+  border: none;
+  text-align: center;
 }
 
-.btn:hover {
+.regist_btn:hover,
+.update_btn:hover {
   background: #533aaf;
 }
 
@@ -124,7 +133,7 @@ input {
   appearance: none;
   cursor: pointer;
   border-radius: 5px;
-  background: #e3e3e3;
+  background: inherit;
   font-size: 16px;
   transition: 0.8s;
   color: #0000ee;
