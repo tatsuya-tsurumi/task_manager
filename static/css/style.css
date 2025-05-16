@@ -136,6 +136,14 @@ input {
   transition: 0.8s;
 }
 
+.modal {
+  margin-top: 200px;
+}
+
+.modal-body {
+  text-align: center;
+}
+
 .chara01 {
   position: absolute;
   bottom: 0%;
