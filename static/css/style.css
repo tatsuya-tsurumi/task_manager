@@ -91,14 +91,6 @@ table {
   text-align: center;
 }
 
-/* th:first-child {
-  border-top-left-radius: 10px;
-}
-
-th:last-child {
-  border-radius: 0 10px 0 0;
-} */
-
 th {
   border: 1px solid #000;
   text-align: center;
@@ -109,14 +101,6 @@ td {
   text-align: center;
   border:1px solid #000
 }
-
-/* tr:last-child td:first-child {
-  border-radius: 0 0 0 10px;
-}
-
-tr:last-child td:last-child {
-  border-radius: 0 0 10px 0;
-} */
 
 #detail {
   width:98%;
@@ -199,6 +183,7 @@ li {
 .error_head {
   color: #fff;
   opacity: 0.6;
+  margin-top: 32px;
 }
 
 .error_msg {
