@@ -89,7 +89,7 @@ function startWalk() {
 function startWalk2() {
   anime({
     targets: ".chara01",
-    translateX: -1050,
+    translateX: -1010,
     scaleX: 1,
     easing: "linear",
     duration: 4000,

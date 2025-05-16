@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="border">
+<div class="border1">
   <h1>タスク登録</h1>
   {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -12,7 +12,7 @@
     {% endif %}
   {% endwith %}
   <form method="POST">
-    <table border="1">
+    <table border="1" class="sub_table">
       <tr class="first_record"><th>件名</th><th>詳細</th><th>期限</th><th>状況</th></tr>
       <tr>
         <td>
@@ -33,13 +33,13 @@
         </td>
       </tr>
     </table>
-    <input type="submit" value="登録" class="btn">
+    <input type="submit" value="登録" class="regist_btn">
   </form>
   <div class="back">
     <a href="/" >一覧に戻る</a>
   </div>
     <div class="chara02">
-    <img  src="{{ url_for('static', filename='images/yakuza_kowai.png') }}" alt="" class="chara_img">
+    <img  src="{{ url_for('static', filename='images/yakuza.png') }}" alt="" class="chara_img">
   </div>
 </div>
 {% endblock %}

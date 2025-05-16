@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="border">
+<div class="border1">
   <h1>タスク</h1>
   <div class="top_todo">
     <a href="/todo_regist" role="button" class="top_btn">タスク登録</a>
@@ -34,11 +34,31 @@
             </select>
           </td>
           <td><a href="/{{todo.id}}/todo_edit" role="button">編集</a></td>
-          <td><a href="/{{todo.id}}/todo_delete">削除</a></td>
+          <td>
+            <a type="button" class="delete_btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{todo.id}}">削除</a>
+          </td>
+
+          <div class="modal fade" id="deleteModal{{todo.id}}" tabindex="-1" aria-labelledby="deleteModalLabel{{todo.id}}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                </div>
+                <div class="modal-body">
+                  消しますか？
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="regist_btn" data-bs-dismiss="modal">やめとく</button>
+                  <a href="/{{todo.id}}/todo_delete" class="regist_btn">消す</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </tr>
       {% endfor %}
       <div class="chara01">
-        <img src="{{ url_for('static', filename='images/furyo_shounen.png') }}" alt="" class="chara_img" >
+        <img src="{{ url_for('static', filename='images/furyo.png') }}" alt="" class="chara_img" >
       </div>
     </table>
   {% endif %}
