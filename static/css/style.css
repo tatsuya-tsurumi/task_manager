@@ -10,11 +10,20 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.7;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -1;
 }
 
 .border1 {
-  border: solid 5px #068b9a61;
+  border: solid 5px #fff;
   width: 70%;
   margin: 32px auto; 
   padding: 16px 16px 32px;
@@ -39,11 +48,11 @@ a {
   transition: 1.2s;
   padding: 4px 8px;
   text-decoration: none;
-  color: #0000ee;
+  color: #1ee96cc4;
 }
 
 a:hover {
-  /* background: #605685; */
+  background: #07421e;
   color: #fff;
   transition: 0.8s;
 }
@@ -60,7 +69,7 @@ table {
 }
 
 .first_record {
-  background-color:#068b9a61;
+  background-color:#139846b0;
 }
 
 .l_tb {
@@ -72,7 +81,7 @@ table {
   cursor: pointer;
   padding: 8px;
   width: 150px;
-  background: #3f79ffb5;
+  background: #139846b0;
   color: #fff;
   border-radius: 5px;
   display: block;
@@ -84,7 +93,7 @@ table {
 
 .regist_btn:hover,
 .update_btn:hover {
-  background: #533aaf;
+  background: #07421e;
 }
 
 .delete_btn {
@@ -93,7 +102,7 @@ table {
   transition: 1.2s;
   padding: 4px 8px;
   text-decoration: none;
-  color: #0000ee;
+  color: #1ee96cc4;
 }
 
 .back {
@@ -105,14 +114,14 @@ table {
 }
 
 th {
-  border: 1px solid #000;
+  border: 1px solid #fff;
   text-align: center;
 }
 
 td {
   padding: 4px;
   text-align: center;
-  border:1px solid #000
+  border:1px solid #fff
 }
 
 #detail {
@@ -133,11 +142,11 @@ input {
   background: inherit;
   font-size: 16px;
   transition: 0.8s;
-  color: #0000ee;
+  color: #1ee96cc4;
   text-align: center;
 }
 #select:hover {
-  /* background: #605685; */
+  background: #07421e;
   color: #fff;
   transition: 0.8s;
 }
