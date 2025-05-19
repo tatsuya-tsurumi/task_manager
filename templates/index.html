@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="border1">
+  <!-- 見出し -->
   <h1>タスク</h1>
+  <!-- 画面遷移のボタン -->
   <div class="top_todo">
     <a href="/todo_regist" role="button" class="top_btn">タスク登録</a>
     {% if check %}
@@ -10,9 +12,11 @@
       <a href="/todo_all" role="button" class="top_btn">全て表示</a>
     {% endif %}
   </div>
+  <!-- タスクがない場合は未登録を表示 -->
   {% if todo_list == [] %}
     <p>ToDoは未登録です</p>
   {% else %}
+  <!-- タスク一覧をtable形式で表示 -->
     <table border="1">
       <tr class="first_record">
         <th>件名</th>
@@ -27,8 +31,8 @@
           <td>{{todo.title}}</td>
           <td class="l_tb">{{todo.detail}}</td>
           <td>{{todo.deadline}}</td>
-          <td>
-            <select class="status-select" data-id="{{ todo.id }}" id="select">
+          <td >
+            <select class="status-select" data-id="{{ todo.id }}" id="select" >
               <option value="進行中" {% if todo.status == '進行中'%}selected{% endif %}>進行中</option>
               <option value="完了" {% if todo.status == '完了'%}selected{% endif %}>完了</option>
             </select>
@@ -38,6 +42,7 @@
             <a type="button" class="delete_btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{todo.id}}">削除</a>
           </td>
 
+          <!-- 削除確認ポップアップ表示 -->
           <div class="modal fade" id="deleteModal{{todo.id}}" tabindex="-1" aria-labelledby="deleteModalLabel{{todo.id}}" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -57,13 +62,11 @@
 
         </tr>
       {% endfor %}
+      <!-- ミニキャラ表示 -->
       <div class="chara01">
         <img src="{{ url_for('static', filename='images/furyo.png') }}" alt="" class="chara_img" >
       </div>
     </table>
   {% endif %}
-  <svg width="0" height="0">
-    <path id="motionPath" d="M0,0 C100,100 200,0 300,100" fill="none"/>
-  </svg>
 </div>
 {% endblock %}
