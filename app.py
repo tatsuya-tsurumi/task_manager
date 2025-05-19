@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template,g,redirect,request,flash,url_for
+from flask import render_template,g,redirect,request,flash
 import sqlite3
 DATABASE = "flasktodo.db"
 
