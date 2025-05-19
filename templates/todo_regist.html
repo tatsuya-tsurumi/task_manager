@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="border1">
+  <!-- 見出し -->
   <h1>タスク登録</h1>
+  <!-- エラー発生時の処理。 -->
   {% with messages = get_flashed_messages() %}
     {% if messages %}
-      <ul style="color: red;">
+      <ul>
         {% for message in messages %}
         <li>{{message}}</li>
         {% endfor %}
       </ul>
     {% endif %}
   {% endwith %}
+  
   <form method="POST">
+    <!-- table形式で入力欄を設置 -->
     <table border="1" class="sub_table">
       <tr class="first_record"><th>件名</th><th>詳細</th><th>期限</th><th>状況</th></tr>
       <tr>
@@ -19,7 +23,7 @@
           <input type="text" name="title" id="title" value="{{title}}">
         </td>
         <td class="l_tb">
-          <input type="text" name="detail" id="detail" value="{{detail}}">
+          <input type="text" name="detail" id="detail" value="{{detail}}" class="long_input">
         </td>
         <td>
           <input type="date" name="deadline" id="deadline" value="{{deadline}}">
@@ -35,8 +39,10 @@
     </table>
     <input type="submit" value="登録" class="regist_btn">
   </form>
+  <!-- 一覧画面へ戻るボタン -->
   <div class="back">
     <a href="/" >一覧に戻る</a>
+  <!-- ミニキャラ表示 -->
   </div>
     <div class="chara02">
     <img  src="{{ url_for('static', filename='images/yakuza.png') }}" alt="" class="chara_img">

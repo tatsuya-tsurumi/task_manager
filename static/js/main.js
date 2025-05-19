@@ -1,7 +1,9 @@
+// 要素全体を1秒かけてフェードイン
 $(window).on("load", function() {
     $('.border1').fadeIn(1000); 
 });
 
+// ID・ステータス情報取得。updateStatus()呼び出し
 document.querySelectorAll(".status-select").forEach(select => {
   select.addEventListener("change", function () {
     const id = this.dataset.id;
@@ -10,6 +12,7 @@ document.querySelectorAll(".status-select").forEach(select => {
   })
 });
 
+// IDからステータス情報更新リクエスト
 function updateStatus(id, newStatus) {
   fetch(`/todo_status/${id}`, {
     method: 'POST',
@@ -28,14 +31,17 @@ function updateStatus(id, newStatus) {
       console.error('ステータス更新失敗');
     }
   })
+  // エラー対応
   .catch(error => {
     console.error('通信エラー:', error);
   });
 }
 
+// 変数設定
 const path = anime.path('#motionPath');
 let flipped = false;
 
+// トップページのキャラの動き
 const swing = {
   targets: ".chara01 img", // 左右に揺らす動きを新規作成したimgタグに設定する
   easing: "linear", // イージングは一定（linear）に設定
@@ -44,43 +50,44 @@ const swing = {
   loop: true, // 揺れを繰り返す
 };
 
+// 登録ページのキャラの動き
 const swing2 = {
-  targets: ".chara02 img", // 左右に揺らす動きを新規作成したimgタグに設定する
-  easing: "linear", // イージングは一定（linear）に設定
-  delay: 300,
-  duration: 10000,
-  scale: [0.5, 1, 1,5, 2, 3],
+  targets: ".chara02", // 対象のimgタグを設定
+  easing: "linear", // 一定スピード（linear）に設定
+  duration: 10000, // 10秒かけて実施
+  scale: [0.5, 1, 1,5, 2], // 大きさを調整
   rotate: [10, -10], // 左右に10度ずつ揺らす
-  direction: "alternate", // 揺れる方向を設定。「行って戻る」ように揺らがせる
+  direction: "alternate", // 揺れる方向を設定。「行って戻る」ように揺らす
   loop: true, // 揺れを繰り返す
 };
 
+// 編集ページのキャラの動き
 function startWalk() {
   anime({
-    targets: ".chara03",
-    translateX: 1500,
-    scaleX: 1,
-    easing: "easeInQuad",
-    duration: 4000,
-    delay: 2000,
+    targets: ".chara03", // 対象のimgタグを設定
+    translateX: 1500, // X方向に1500pxに移動
+    scaleX: 1, // 元の方向へ戻す
+    easing: "easeInQuad", // だんだん早く移動
+    duration: 4000, // 4秒かけて実施
+    delay: 2000, //2秒遅れて動き出す
     complete: function() {
       flipped = true;
       anime({
-        targets: ".chara03",
-        scaleX: -1, // 反転してから
-        duration: 3000, 
+        targets: ".chara03", // 対象のimgタグを設定
+        scaleX: -1, // 反転
+        duration: 3000, //3秒かけて実施
         complete: function() {
           anime({
-            targets: ".chara03",
-            translateX: 0,
-            easing: "easeOutQuad",
-            duration: 3000,
+            targets: ".chara03", // 対象のimgタグを設定
+            translateX: 0, //元の場所へ戻す
+            easing: "easeOutQuad", // だんだん遅く移動
+            duration: 3000, // 3秒かけて実施
             complete: function() {
               flipped = false;
               anime({
-                targets: ".chara03",
-                scaleX: 1,
-                duration: 0,
+                targets: ".chara03", // 対象のimgタグを設定
+                scaleX: 1, // 元の方向へ戻す
+                duration: 0, // すぐ実施
                 complete: startWalk // 再帰でループ
               });
             }
@@ -90,33 +97,35 @@ function startWalk() {
     }
   });
 }
+
+// トップページのキャラの動き
 function startWalk2() {
   anime({
-    targets: ".chara01",
-    translateX: -1010,
-    scaleX: 1,
-    easing: "linear",
-    duration: 4000,
-    delay: 2000,
+    targets: ".chara01", // 対象のimgタグを設定
+    translateX: -1010, // X方向に-1010pxに移動
+    scaleX: 1, // 元の方向へ戻す
+    easing: "linear", // 一定スピード（linear）に設定
+    duration: 4000, // 4秒かけて実施
+    delay: 2000, //2秒遅れて動き出す
     complete: function() {
       flipped = true;
       anime({
-        targets: ".chara01",
-        scaleX: -1, // 反転してから
+        targets: ".chara01", // 対象のimgタグを設定
+        scaleX: -1, // 反転
         duration: 0, // 一瞬で
         complete: function() {
           anime({
-            targets: ".chara01",
-            translateX: 0,
-            easing: "linear",
-            duration: 4000,
-            delay: 1000,
+            targets: ".chara01", // 対象のimgタグを設定
+            translateX: 0, //元の場所へ戻す
+            easing: "linear", // 一定スピード（linear）に設定
+            duration: 4000, // 4秒かけて実施
+            delay: 1000, //1秒遅れて動き出す
             complete: function() {
               flipped = false;
               anime({
-                targets: ".chara01",
-                scaleX: 1,
-                duration: 0,
+                targets: ".chara01", // 対象のimgタグを設定
+                scaleX: 1, // 元の方向へ戻す
+                duration: 0, // 一瞬で
                 complete: startWalk2 // 再帰でループ
               });
             }
@@ -128,7 +137,7 @@ function startWalk2() {
 }
 
 
-// anime(walk)
+// それぞれの処理を呼び出す
 startWalk();
 startWalk2();
 anime(swing)

@@ -6,17 +6,20 @@ DATABASE = "flasktodo.db"
 app = Flask(__name__)
 app.secret_key = 'dev_secret_key'
 
+# 初期画面、タスク一覧を表示(進行中のみ)
 @app.route("/")
 def main():
   todo_list = get_db().execute("SELECT id,title,detail,deadline,status FROM todo WHERE status = '進行中' ORDER BY deadline ASC").fetchall()
   return render_template("index.html",todo_list = todo_list)
 
+# タスク一覧を表示(全案件)
 @app.route("/todo_all")
 def all():
   todo_list = get_db().execute("SELECT id,title,detail,deadline,status FROM todo ORDER BY deadline ASC").fetchall()
   check = any(todo['status'] == '完了' for todo in todo_list)
   return render_template("index.html",todo_list = todo_list,check=check)
 
+# 登録画面。GET:タスク登録ページへ遷移、POST:DBへ案件登録実施
 @app.route("/todo_regist", methods=['GET', 'POST'])
 def regist():
   if request.method == "POST":
@@ -37,6 +40,7 @@ def regist():
     return redirect("/")
   return render_template("todo_regist.html")
 
+# 編集画面。GET:タスク編集ページへ遷移、POST:DBへ登録情報更新
 @app.route("/<id>/todo_edit", methods=["GET", "POST"])
 def edit(id):
   if request.method == "POST":
@@ -58,6 +62,7 @@ def edit(id):
   post = get_db().execute("SELECT id,title,detail,deadline,status FROM todo WHERE id=?",(id,)).fetchone()
   return render_template("todo_edit.html",post=post)
 
+# 一覧ページからのリクエスト。POST:ステータス情報を更新
 @app.route("/todo_status/<id>", methods=["POST"])
 def update_status(id):
   status = request.json.get("status")
@@ -66,6 +71,7 @@ def update_status(id):
   db.commit()
   return "", 204
 
+# 一覧ページからのリクエスト。GET:タスク削除
 @app.route("/<id>/todo_delete", methods=["GET"])
 def delete(id):
     db = get_db()
@@ -73,10 +79,12 @@ def delete(id):
     db.commit()
     return redirect("/")
 
+# 404エラー発生時のルーティング
 @app.errorhandler(404)
 def not_found_err(error):
   return render_template('404.html'),404
 
+# 500エラー発生時のルーティング
 @app.errorhandler(500)
 def not_found_err(error):
   return render_template('500.html'),500
@@ -84,7 +92,7 @@ def not_found_err(error):
 if __name__ == "__main__":
   app.run()
 
-# DATABASE
+# DATABASE接続処理
 def connect_db():
   rv = sqlite3.connect(DATABASE)
   rv.row_factory = sqlite3.Row
